@@ -12,7 +12,7 @@ cd $DOCROOT
 echo "Download DRUPAL."
 
 drush dl $CORE --drupal-project-rename="drupal"
-rsync -a $SITEPATH/drupal/ $SITEPATH
+rsync -a $DOCROOT/drupal/ $DOCROOT
 rm -rf drupal
 
 
