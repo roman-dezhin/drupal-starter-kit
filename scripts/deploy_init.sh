@@ -40,7 +40,7 @@ fi
 
 if [ "$ENABLE_DEVEL" != "" ]; then
   drush dl devel
-  drusn -y en devel devel_generate
+  drush -y en devel devel_generate
   drush generate-content 100
   drush generate-users 100
 fi
