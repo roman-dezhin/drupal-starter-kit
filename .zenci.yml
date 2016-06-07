@@ -1,0 +1,21 @@
+deploy:
+  branch:
+    server: d7-advanced.zenci.drupal-site.net
+    username: zenci
+    dir: '{home}/github/{repo_owner}/{repo_name}/{branch}'
+    env_vars:
+      docroot: '{home}/domains/d7-advanced.zenci.drupal-site.net'
+      domain: 'd7-advanced.zenci.drupal-site.net'
+      database_name: zenci_drupal2
+      database_user: zenci_drupal2
+      database_pass: DBPASSWORD
+      account_user: admin
+      account_mail: admin@zen.ci
+      account_pass: REPLACE_WITH_ADMIN_PASSWORD
+      site_mail: noreply@zen.ci
+      site_name: 'Example advanced site'
+      default_theme: "bootstrap_lite"
+      enable_devel: "yes"
+    scripts:
+      init: '{deploy_dir}/scripts/deploy_init.sh'
+      after: '{deploy_dir}/scripts/deploy_update.sh'
