@@ -7,7 +7,7 @@ CORE='drupal-7'
 echo "Full site path: $DOCROOT"
 echo "Site core: $CORE"
 
-cd $$DOCROOT
+cd $DOCROOT
 
 echo "Download DRUPAL."
 
