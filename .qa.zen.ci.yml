@@ -1,0 +1,44 @@
+deploy:
+  branch:
+    server: REPLACE_WITH_SERVER
+    username: REPLACE_WITH_USER
+    dir: '{home}/github/{repo_owner}/{repo_name}/branch/{branch}'
+    env_vars:
+      docroot: 'REPLACE_WITH_DOCROOT'
+      domain: 'REPLACE_WITH_DOMAIN'
+      database_name: REPLACE_WITH_DATABASE_NAAME
+      database_user: REPLACE_WITH_DTABASE_USER
+      database_pass: REPLACE_WITH_DATABASE_PASSWORD
+      account_user: REPLACE_WITH_ADMIN_USER
+      account_mail: REPLACE_WITH_ADMIN_EMAIL
+      account_pass: REPLACE_WITH_ADMIN_PASSWORD
+      site_mail: REPLACE_WITH_SITE_EMAIL
+      site_name: REPLACE_WITH_SITE_NAME
+      default_theme: "REPLACE_WITH_THEME"
+      enable_devel: "LEAVE_EMPTY_OR_PUT_YES_TO_ENABLE"      
+    scripts:
+      init: '{deploy_dir}/scripts/deploy_init.sh'
+      after: '{deploy_dir}/scripts/deploy_update.sh'
+      remove: '{deploy_dir}/scripts/deploy_remove.sh'
+  pull_request:
+    server: REPLACE_WITH_SERVER
+    username: REPLACE_WITH_USER
+    dir: '{home}/github/{repo_owner}/{repo_name}/pr/{pr_number}'
+    env_vars:
+      docroot: 'REPLACE_WITH_DOCROOT'
+      domain: 'REPLACE_WITH_DOMAIN'
+      database_name: REPLACE_WITH_DATABASE_NAAME
+      database_user: REPLACE_WITH_DTABASE_USER
+      database_pass: REPLACE_WITH_DATABASE_PASSWORD
+      account_user: REPLACE_WITH_ADMIN_USER
+      account_mail: REPLACE_WITH_ADMIN_EMAIL
+      account_pass: REPLACE_WITH_ADMIN_PASSWORD
+      site_mail: REPLACE_WITH_SITE_EMAIL
+      site_name: REPLACE_WITH_SITE_NAME
+      default_theme: "REPLACE_WITH_THEME"
+      enable_devel: "LEAVE_EMPTY_OR_PUT_YES_TO_ENABLE"
+    scripts:
+      init: '{deploy_dir}/scripts/deploy_init.sh'
+      after: '{deploy_dir}/scripts/deploy_update.sh'
+      remove: '{deploy_dir}/scripts/deploy_remove.sh'
+
