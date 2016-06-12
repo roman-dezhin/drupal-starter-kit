@@ -151,6 +151,8 @@ All arguments are long options.
 
   --file      Run tests identified by specific file names, instead of group names.
               Specify the path and the extension (i.e. 'modules/user/user.test').
+              
+  --directory Run all tests found within the specified file directory.
 
   --xml       <path>
 
@@ -211,10 +213,11 @@ function simpletest_script_parse_args() {
     'execute-test' => '',
     'xml' => '',
     'summary' => '',
+    'directory' => NULL,
   );
 
   // Override with set values.
-  $args['script'] = basename(array_shift($_SERVER['argv']));
+  $args['script'] = array_shift($_SERVER['argv']);
 
   $count = 0;
   while ($arg = array_shift($_SERVER['argv'])) {
@@ -406,7 +409,7 @@ function simpletest_script_run_one_test($test_id, $test_class) {
 function simpletest_script_command($test_id, $test_class) {
   global $args, $php;
 
-  $command = escapeshellarg($php) . ' ' . escapeshellarg('./scripts/' . $args['script']) . ' --url ' . escapeshellarg($args['url']);
+  $command = escapeshellarg($php) . ' ' . escapeshellarg($args['script']) . ' --url ' . escapeshellarg($args['url']);
   if ($args['color']) {
     $command .= ' --color';
   }
@@ -449,20 +452,22 @@ function simpletest_script_get_test_list() {
         }
       }
     }
-    elseif ($args['file']) {
+    elseif ($args['directory']) {
+      // Extract test case class names from specified directory.
       $files = array();
-      foreach ($args['test_names'] as $file) {
-        $files[drupal_realpath($file)] = 1;
+      if ($args['directory'][0] === '/') {
+        $directory = $args['directory'];
+      }
+      else {
+        $directory = DRUPAL_ROOT . "/" . $args['directory'];
       }
 
-      // Check for valid class names.
-      foreach ($all_tests as $class_name) {
-        $refclass = new ReflectionClass($class_name);
-        $file = $refclass->getFileName();
-        if (isset($files[$file])) {
-          $test_list[] = $class_name;
-        }
+      foreach (file_scan_directory($directory, '/\.test$/') as $file) {
+        $content = file_get_contents($file->uri);
+        preg_match_all('@^class ([^ ]+)@m', $content, $matches);
+        $test_list = array_merge($test_list, $matches[1]);
       }
+      
     }
     else {
       // Check for valid group names and get all valid classes in group.
