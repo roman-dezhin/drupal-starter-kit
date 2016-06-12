@@ -1,0 +1,40 @@
+test:
+  REPLACE_WITH_TAG:
+    branch:
+      box: REPLACE_WITH_BOX_NAME
+      dir: '{home}/github'
+      env_vars:
+        docroot: '{home}/www'
+        domain: 'localhost'
+        database_name: 'test'
+        database_user: 'test'
+        database_pass: ''
+        account_user: REPLACE_WITH_ADMIN_USER
+        account_mail: REPLACE_WITH_ADMIN_EMAIL
+        account_pass: REPLACE_WITH_ADMIN_PASSWORD
+        site_mail: REPLACE_WITH_SITE_EMAIL
+        site_name: REPLACE_WITH_SITE_NAME
+        tests: '--all'
+      scripts:
+        init: '{deploy_dir}/scripts/test_deploy_init.sh'
+      tests:
+        - '{deploy_dir}/scripts/drupal_tests.php'
+    pull_request:
+      box: REPLACE_WITH_BOX_NAME
+      dir: '{home}/github'
+      env_vars:
+        docroot: '{home}/www'
+        domain: 'localhost'
+        database_name: 'test'
+        database_user: 'test'
+        database_pass: ''
+        account_user: REPLACE_WITH_ADMIN_USER
+        account_mail: REPLACE_WITH_ADMIN_EMAIL
+        account_pass: REPLACE_WITH_ADMIN_PASSWORD
+        site_mail: REPLACE_WITH_SITE_EMAIL
+        site_name: REPLACE_WITH_SITE_NAME
+        tests: '--all'
+      scripts:
+        init: '{deploy_dir}/scripts/test_deploy_init.sh'
+      tests:
+        - '{deploy_dir}/scripts/drupal_tests.php'
