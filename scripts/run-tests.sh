@@ -441,7 +441,6 @@ function simpletest_script_get_test_list() {
           $test_list[] = $test_class;
         }
         else {
-          $groups = simpletest_test_get_all();
           $all_classes = array();
           foreach ($groups as $group) {
             $all_classes = array_merge($all_classes, array_keys($group));
@@ -461,11 +460,20 @@ function simpletest_script_get_test_list() {
       else {
         $directory = DRUPAL_ROOT . "/" . $args['directory'];
       }
+      
+      $all_classes = array();
+      foreach ($groups as $group) {
+        $all_classes = array_merge($all_classes, array_keys($group));
+      }
 
       foreach (file_scan_directory($directory, '/\.test$/') as $file) {
         $content = file_get_contents($file->uri);
         preg_match_all('@^class ([^ ]+)@m', $content, $matches);
-        $test_list = array_merge($test_list, $matches[1]);
+        foreach($matches[1] as $test_class) {
+          if(in_array($test_class, $all_classes)) {
+            $test_list[] = $test_class;
+          }
+        }
       }
       
     }
