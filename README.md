@@ -23,7 +23,7 @@ themes					#put your own custom themes here
 ```yaml
 github:
   YOURNAME:
-    drupal-startup-kit:	#your repository get cloned here
+    drupal-starter-kit:	#your repository get cloned here
       modules: 				# your own modules
       themes: 				# your own themes
       libraries: 				# your own libraries
@@ -56,7 +56,7 @@ Credits
 -------
 
 - [DrupalCMS](https://drupal.org)
-- [HowTO](http://docs.zen.ci/advanced-start/advanced-deploy-drupal)
+- [HowTO](http://docs.zen.ci/deploy/deploy-drupal-7x)
 
 
 License
