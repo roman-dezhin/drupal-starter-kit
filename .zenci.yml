@@ -2,7 +2,7 @@ deploy:
   branch:
     server: REPLACE_WITH_SERVER
     username: REPLACE_WITH_USER
-    dir: '{home}/github/{repo_owner}/{repo_name}/{branch}'
+    dir: '{home}/github/{repo_owner}/{repo_name}/branch/{branch}'
     env_vars:
       docroot: 'REPLACE_WITH_DOCROOT'
       domain: 'REPLACE_WITH_DOMAIN'
