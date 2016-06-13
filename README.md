@@ -8,8 +8,14 @@ modules					#put your own custom modules here
 libraries					#put your own custom libraries here
 scripts					#deploy related scripts
   deploy_init.sh		#init script. It will be executed only if {deploy_dir} is empty
-  deploy_update.sh		#after script. It will be executed after each push to repository
   drupal_install.sh		#download via drush Drupal and install it
+  qa_deploy_init.sh		#QA init script. It will be executed only if {deploy_dir} is empty
+  run-tests.sh			#ZenCI copy of scripts/ru-tests.sh
+  test_drupal_install.sh		#download via drush Drupal 7.x git version and install it
+  deploy_update.sh		#after script. It will be executed after each push to repository
+  drupal_tests.php		#ZenCI wrapper for run-tests.sh. Report back to ZenCI tests status.
+  qa_deploy_remove.sh		#Clean QA server when branch or PR removed.
+  test_deploy_init.sh		#Tests init script. It will be executed to prepare Drupal for test.
 settings				#meta data for deploy
   update				#place to put your scripts to run once when created
     example.sh			#example script
