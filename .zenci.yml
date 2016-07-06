@@ -8,10 +8,10 @@ deploy:
       domain: 'deploy.droman.stark.vps-private.net'
       database_name: droman_deploy
       database_user: droman_deploy
-      database_pass: TestDeploy123
+      database_pass: 
       account_user: admin
       account_mail: admin@deploy.droman.stark.vps-private.net
-      account_pass: testadmin123
+      account_pass: 
       site_mail: info@deploy.droman.stark.vps-private.net
       site_name: TestDeploy
       default_theme: "bartik"
